@@ -10,10 +10,12 @@ our %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ] );
 use CPAN::Meta;
 use List::Util qw/first/;
 use Module::Metadata;
-use Test::More;
+use Test::Builder;
+
+my $builder = Test::Builder->new;
 
 sub check_dependencies { 
-	my $metafile = first { -e $_ } qw/MYMETA.json MYMETA.yml META.json META.yml/ or return fail("No META information provided\n");
+	my $metafile = first { -e $_ } qw/MYMETA.json MYMETA.yml META.json META.yml/ or return $builder->ok(0, "No META information provided\n");
 	my $meta = CPAN::Meta->load_file($metafile);
 	check_dependencies_opts($meta, $_, 'requires') for qw/configure build test runtime/;
 	return;
@@ -30,12 +32,12 @@ sub check_dependencies_opts {
 		}
 		else {
 			my $metadata = Module::Metadata->new_from_module($module);
-			fail("Module '$module' is not installed"), next if not defined $metadata;
+			$builder->ok(0, "Module '$module' is not installed"), next if not defined $metadata;
 			$version = eval { $metadata->version };
 		}
-		fail("Missing version info for module '$module'"), next if not $version;
-		fail(sprintf 'Version %s of module %s is not in range \'%s\'', $version, $module, $reqs->as_string_hash->{$module}), next if not $reqs->accepts_module($module, $version);
-		pass("$module $version is present");
+		$builder->ok(0, "Missing version info for module '$module'"), next if not $version;
+		$builder->ok(0, sprintf 'Version %s of module %s is not in range \'%s\'', $version, $module, $reqs->as_string_hash->{$module}), next if not $reqs->accepts_module($module, $version);
+		$builder->ok(1, "$module $version is present");
 	}
 	return;
 }
