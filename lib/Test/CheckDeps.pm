@@ -8,8 +8,8 @@ our @EXPORT_OK = qw/check_dependencies_opts/;
 our %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ] );
 
 use CPAN::Meta;
-use List::Util qw/first/;
 use CPAN::Meta::Check qw/check_requirements requirements_for/;
+use List::Util qw/first/;
 use Module::Metadata;
 use Test::Builder;
 
@@ -38,9 +38,9 @@ sub check_dependencies_opts {
 
 1;
 
-__END__
-
 #ABSTRACT: Check for presence of dependencies
+
+__END__
 
 =head1 DESCRIPTION
 

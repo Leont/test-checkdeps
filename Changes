@@ -1,6 +1,8 @@
 Revision history for Test-CheckDeps
 
 {{$NEXT}}
+          Converted to using Test::Builder directly
+          Refactored most non-test code into a new dist, CPAN-Meta-Check
 
 0.001     2011-10-16 13:15:04 Europe/Amsterdam
           Initial release
