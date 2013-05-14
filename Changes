@@ -1,6 +1,7 @@
 Revision history for Test-CheckDeps
 
 {{$NEXT}}
+          Reinstate loading of CPAN::Meta
 
 0.003     2013-05-14 23:16:36 Europe/Amsterdam
           Sort dependencies before displaying them
