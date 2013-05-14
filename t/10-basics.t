@@ -7,6 +7,6 @@ use Test::More 0.88;
 
 use Test::CheckDeps;
 
-check_dependencies();
+check_dependencies('recommends');
 
 done_testing;
