@@ -63,9 +63,35 @@ __END__
 
 This module adds a test that assures all dependencies have been installed properly. If requested, it can bail out all testing on error.
 
-=func check_dependencies()
+=func check_dependencies( [ level ])
 
-Check all 'requires' dependencies based on a local MYMETA or META file.
+Check dependencies based on a local MYMETA or META file.
+
+The C<level> argument is optional. It can be one of:
+
+=over 4
+
+=item * requires
+
+All 'requires' dependencies are checked (for the configure, build, test and
+runtime phases)
+
+=item * classic
+
+As C<requires>, but 'conflicts' dependencies are also checked.
+
+=item * recommends
+
+As C<classic>, but 'recommends' dependencies are also checked, as TODO tests.
+
+=item * suggests
+
+As C<recommends>, but 'suggests' dependencies are also checked, as TODO tests.
+
+=back
+
+When not provided, C<level> defaults to C<classic> ('requires' and 'conflicts'
+dependencies are checked).
 
 =func check_dependencies_opts($meta, $phase, $type)
 
