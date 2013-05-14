@@ -4,6 +4,8 @@ Revision history for Test-CheckDeps
 
 0.003     2013-05-14 23:16:36 Europe/Amsterdam
           Sort dependencies before displaying them
+          check_dependencies() can now optionally also test recommended and
+          suggested prerequisites
 
 0.002     2012-04-01 12:58:10 Europe/Amsterdam
           Converted to using Test::Builder directly
