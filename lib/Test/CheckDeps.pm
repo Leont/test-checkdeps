@@ -30,7 +30,7 @@ sub check_dependencies_opts {
 	my $raw = $reqs->as_string_hash;
 	my $ret = check_requirements($reqs, $type);
 
-	for my $module (keys %{$ret}) {
+	for my $module (sort keys %{$ret}) {
 		$builder->ok(!defined $ret->{$module}, "$module satisfies '" . $raw->{$module} . "'") or $builder->diag($ret->{$module});
 	}
 	return;
