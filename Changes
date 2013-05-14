@@ -1,6 +1,7 @@
 Revision history for Test-CheckDeps
 
 {{$NEXT}}
+          Sort dependencies before displaying them
 
 0.002     2012-04-01 12:58:10 Europe/Amsterdam
           Converted to using Test::Builder directly
