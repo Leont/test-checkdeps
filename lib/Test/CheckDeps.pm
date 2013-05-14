@@ -7,10 +7,8 @@ our @EXPORT = qw/check_dependencies/;
 our @EXPORT_OK = qw/check_dependencies_opts/;
 our %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ] );
 
-use CPAN::Meta;
 use CPAN::Meta::Check qw/check_requirements requirements_for/;
 use List::Util qw/first/;
-use Module::Metadata;
 use Test::Builder;
 
 my $builder = Test::Builder->new;
