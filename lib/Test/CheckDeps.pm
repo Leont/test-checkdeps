@@ -32,7 +32,7 @@ sub check_dependencies {
 		$builder->todo_end();
 
 		if ($level > 2) {
-			$builder->todo_start('recommends are not mandatory');
+			$builder->todo_start('suggests are not mandatory');
 			check_dependencies_opts($meta, $_, 'suggests') for qw/configure build test runtime/;
 			$builder->todo_end();
 		}
