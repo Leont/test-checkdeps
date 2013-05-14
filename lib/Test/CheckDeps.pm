@@ -13,11 +13,30 @@ use Test::Builder;
 
 my $builder = Test::Builder->new;
 
-sub check_dependencies { 
+my %level_of = (
+	requires   => 0,
+	classic    => 1,
+	recommends => 2,
+	suggests   => 3,
+);
+
+sub check_dependencies {
+	my $level = $level_of{shift || 'classic'};
 	my $metafile = first { -e $_ } qw/MYMETA.json MYMETA.yml META.json META.yml/ or return $builder->ok(0, "No META information provided\n");
 	my $meta = CPAN::Meta->load_file($metafile);
 	check_dependencies_opts($meta, $_, 'requires') for qw/configure build test runtime/;
-	check_dependencies_opts($meta, 'runtime', 'conflicts');
+	check_dependencies_opts($meta, 'runtime', 'conflicts') if $level > 0;
+	if ($level > 1) {
+		$builder->todo_start('recommends are not mandatory');
+		check_dependencies_opts($meta, $_, 'recommends') for qw/configure build test runtime/;
+		$builder->todo_end();
+
+		if ($level > 2) {
+			$builder->todo_start('recommends are not mandatory');
+			check_dependencies_opts($meta, $_, 'suggests') for qw/configure build test runtime/;
+			$builder->todo_end();
+		}
+	}
 	return;
 }
 
