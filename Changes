@@ -2,6 +2,7 @@ Revision history for Test-CheckDeps
 
 {{$NEXT}}
           Explicitly require CPAN::Meta 2.120920
+          Switch to Module::Build::Tiny
 
 0.005     2013-06-21 18:55:09 Europe/Amsterdam
           Require CPAN::Meta::Check 0.004
