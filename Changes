@@ -1,6 +1,8 @@
 Revision history for Test-CheckDeps
 
 {{$NEXT}}
+
+0.005     2013-06-21 18:55:09 Europe/Amsterdam
           Require CPAN::Meta::Check 0.004
 
 0.004     2013-05-15 00:04:46 Europe/Amsterdam
