@@ -49,7 +49,8 @@ sub check_dependencies_opts {
 	my $ret = check_requirements($reqs, $type);
 
 	for my $module (sort keys %{$ret}) {
-		$builder->ok(!defined $ret->{$module}, "$module satisfies '" . $raw->{$module} . "'") or $builder->diag($ret->{$module});
+		$builder->ok(!defined $ret->{$module}, "$module satisfies '" . $raw->{$module} . "'") and next;
+		$builder->${\( $builder->in_todo ? 'note' : 'diag' )}($ret->{$module});
 	}
 	return;
 }
