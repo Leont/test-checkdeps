@@ -1,6 +1,7 @@
 Revision history for Test-CheckDeps
 
 {{$NEXT}}
+          Conflicts checking is now done as a TODO
 
 0.006     2013-06-21 19:15:24 Europe/Amsterdam
           Explicitly require CPAN::Meta 2.120920
