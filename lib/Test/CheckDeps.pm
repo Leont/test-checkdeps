@@ -50,8 +50,8 @@ sub check_dependencies_opts {
 
 	for my $module (sort keys %{$ret}) {
 		$builder->ok(!defined $ret->{$module}, "$module satisfies '" . $raw->{$module} . "'")
-                    # Note: when in a TODO, diag behaves like note
-                    or $builder->diag($ret->{$module});
+			or $builder->diag($ret->{$module});
+			# Note: when in a TODO, diag behaves like note
 	}
 	return;
 }
