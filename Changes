@@ -1,6 +1,7 @@
 Revision history for Test-CheckDeps
 
 {{$NEXT}}
+          - Switch to MakeMaker to fix bootstrapping issues
 
 0.007     2013-09-18 23:42:21 Europe/Amsterdam
           - bump prereq on CPAN::Meta::Check to latest (0.007), for conflicts
