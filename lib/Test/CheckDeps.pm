@@ -26,13 +26,13 @@ sub check_dependencies {
 	my $metafile = first { -e $_ } qw/MYMETA.json MYMETA.yml META.json META.yml/ or return $builder->ok(0, "No META information provided\n");
 	my $meta = CPAN::Meta->load_file($metafile);
 	check_dependencies_opts($meta, $_, 'requires') for qw/configure build test runtime/;
-	check_dependencies_opts($meta, 'runtime', 'conflicts') if $level > 0;
-	if ($level > 1) {
+	check_dependencies_opts($meta, 'runtime', 'conflicts') if $level >= $level_of{classic};
+	if ($level >= $level_of{recommends}) {
 		$builder->todo_start('recommends are not mandatory');
 		check_dependencies_opts($meta, $_, 'recommends') for qw/configure build test runtime/;
 		$builder->todo_end();
 
-		if ($level > 2) {
+		if ($level >= $level_of{suggests}) {
 			$builder->todo_start('suggests are not mandatory');
 			check_dependencies_opts($meta, $_, 'suggests') for qw/configure build test runtime/;
 			$builder->todo_end();
