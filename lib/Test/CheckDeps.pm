@@ -60,8 +60,6 @@ sub check_dependencies_opts {
 
 #ABSTRACT: Check for presence of dependencies
 
-__END__
-
 =head1 SYNOPSIS
 
  use Test::More 0.94;
