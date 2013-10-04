@@ -62,6 +62,15 @@ sub check_dependencies_opts {
 
 __END__
 
+=head1 SYNOPSIS
+
+ use Test::More 0.94;
+ use Test::CheckDeps 0.007;
+ 
+ check_dependencies();
+
+ done_testing();
+
 =head1 DESCRIPTION
 
 This module adds a test that assures all dependencies have been installed properly. If requested, it can bail out all testing on error.
