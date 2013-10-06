@@ -2,6 +2,8 @@ Revision history for Test-CheckDeps
 
 {{$NEXT}}
           - Added Synopsis
+          - $Test::Builder::Level increased, so failing tests appear to come
+            from the .t file rather than Test/CheckDeps.pm
 
 0.008     2013-09-25 13:49:59 Europe/Amsterdam
           - Switch to MakeMaker to fix bootstrapping issues
