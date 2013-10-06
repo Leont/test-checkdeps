@@ -23,6 +23,7 @@ my %level_of = (
 
 sub check_dependencies {
 	my $level = $level_of{shift || 'classic'};
+	local $Test::Builder::Level = $Test::Builder::Level + 1;
 	my $metafile = first { -e $_ } qw/MYMETA.json MYMETA.yml META.json META.yml/ or return $builder->ok(0, "No META information provided\n");
 	my $meta = CPAN::Meta->load_file($metafile);
 	check_dependencies_opts($meta, $_, 'requires') for qw/configure build test runtime/;
@@ -48,6 +49,7 @@ sub check_dependencies_opts {
 	my $raw = $reqs->as_string_hash;
 	my $ret = check_requirements($reqs, $type);
 
+	local $Test::Builder::Level = $Test::Builder::Level + 1;
 	for my $module (sort keys %{$ret}) {
 		$builder->ok(!defined $ret->{$module}, "$module satisfies '" . $raw->{$module} . "'")
 			or $builder->diag($ret->{$module});
