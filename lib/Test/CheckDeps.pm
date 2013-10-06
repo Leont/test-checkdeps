@@ -108,4 +108,4 @@ dependencies are checked).
 Check dependencies in L<CPAN::Meta> object $meta for phase C<$phase> (configure, build, test, runtime, develop) and type C<$type>(requires, recommends, suggests, conflicts). You probably just want to use C<check_dependencies> though.
 
 =cut
-# vi:noet:sts=2:sw=2:ts=2
+# vim: set ts=2 sw=2 noet nolist :

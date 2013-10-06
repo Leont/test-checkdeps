@@ -10,4 +10,4 @@ use Test::CheckDeps;
 check_dependencies('recommends');
 
 done_testing;
-# vi:noet:sts=2:sw=2:ts=2
+# vim: set ts=2 sw=2 noet nolist :
