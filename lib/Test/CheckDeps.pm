@@ -39,6 +39,8 @@ sub check_dependencies {
 			$builder->todo_end();
 		}
 	}
+	check_dependencies_opts($meta, 'develop', 'requires') if $ENV{AUTHOR_TESTING};
+
 	return;
 }
 
@@ -85,8 +87,9 @@ The C<level> argument is optional. It can be one of:
 
 =item * requires
 
-All 'requires' dependencies are checked (for the configure, build, test and
-runtime phases)
+All 'requires' dependencies are checked (the configure, build, test and
+runtime phases are always checked, and the develop phase is also tested when
+AUTHOR_TESTING is set)
 
 =item * classic
 
