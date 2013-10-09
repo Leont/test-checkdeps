@@ -1,6 +1,7 @@
 Revision history for Test-CheckDeps
 
 {{$NEXT}}
+          - Revert adding conventional [Test::CheckDeps] test, to avoid circular dependency
 
 0.009     2013-10-09 15:39:01 Europe/Amsterdam
           - Added Synopsis
