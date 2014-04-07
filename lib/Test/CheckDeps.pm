@@ -47,9 +47,15 @@ sub check_dependencies {
 sub check_dependencies_opts {
 	my ($meta, $phases, $type) = @_;
 
-	my $reqs = requirements_for($meta, $phases, $type);
-	my $raw = $reqs->as_string_hash;
-	my $ret = check_requirements($reqs, $type);
+    my $reqs = requirements_for($meta, $phases, $type);
+    check_dependencies_reqs($reqs, $type);
+}
+
+sub check_dependencies_reqs {
+    my ($reqs, $type) = @_;
+
+    my $raw = $reqs->as_string_hash;
+    my $ret = check_requirements($reqs, $type);
 
 	local $Test::Builder::Level = $Test::Builder::Level + 1;
 	for my $module (sort keys %{$ret}) {
@@ -59,6 +65,7 @@ sub check_dependencies_opts {
 	}
 	return;
 }
+    
 
 1;
 
@@ -111,6 +118,13 @@ dependencies are checked).
 =func check_dependencies_opts($meta, $phase, $type)
 
 Check dependencies in L<CPAN::Meta> object $meta for phase C<$phase> (configure, build, test, runtime, develop) and type C<$type>(requires, recommends, suggests, conflicts). You probably just want to use C<check_dependencies> though.
+
+=func check_dependencies_reqs($reqs, $type)
+
+Checks dependencies in a L<CPAN::Meta::Requirements> object $req for type
+C<$type>(requires, recommends, suggests, conflicts). Allows for usage with
+Module::CPANfile or anything which can generate a CPAN::Meta::Requirements
+object.
 
 =cut
 # vim: set ts=2 sw=2 noet nolist :
