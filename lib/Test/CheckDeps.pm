@@ -47,15 +47,15 @@ sub check_dependencies {
 sub check_dependencies_opts {
 	my ($meta, $phases, $type) = @_;
 
-    my $reqs = requirements_for($meta, $phases, $type);
-    check_dependencies_reqs($reqs, $type);
+	my $reqs = requirements_for($meta, $phases, $type);
+	check_dependencies_reqs($reqs, $type);
 }
 
 sub check_dependencies_reqs {
-    my ($reqs, $type) = @_;
+	my ($reqs, $type) = @_;
 
-    my $raw = $reqs->as_string_hash;
-    my $ret = check_requirements($reqs, $type);
+	my $raw = $reqs->as_string_hash;
+	my $ret = check_requirements($reqs, $type);
 
 	local $Test::Builder::Level = $Test::Builder::Level + 1;
 	for my $module (sort keys %{$ret}) {
@@ -66,7 +66,6 @@ sub check_dependencies_reqs {
 	return;
 }
     
-
 1;
 
 #ABSTRACT: Check for presence of dependencies
