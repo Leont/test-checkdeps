@@ -4,7 +4,7 @@ use warnings FATAL => 'all';
 
 use Exporter 5.57 'import';
 our @EXPORT = qw/check_dependencies/;
-our @EXPORT_OK = qw/check_dependencies_opts/;
+our @EXPORT_OK = qw/check_dependencies_opts check_dependencies_reqs/;
 our %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ] );
 
 use CPAN::Meta 2.120920;
