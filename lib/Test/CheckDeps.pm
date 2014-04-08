@@ -125,7 +125,7 @@ C<$type>(requires, recommends, suggests, conflicts). Allows for usage with
 Module::CPANfile or anything which can generate a CPAN::Meta::Requirements
 object.
 
-=head1 Example Usages
+=head1 EXAMPLES
 
 Following are some more advanced usages for this module
 
