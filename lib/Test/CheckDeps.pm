@@ -120,10 +120,47 @@ Check dependencies in L<CPAN::Meta> object $meta for phase C<$phase> (configure,
 
 =func check_dependencies_reqs($reqs, $type)
 
-Checks dependencies in a L<CPAN::Meta::Requirements> object $req for type
+Checks dependencies in a L<CPAN::Meta::Requirements> object $reqs for type
 C<$type>(requires, recommends, suggests, conflicts). Allows for usage with
 Module::CPANfile or anything which can generate a CPAN::Meta::Requirements
 object.
+
+=head1 Example Usages
+
+Following are some more advanced usages for this module
+
+=head2 cpanfile
+
+Using check_dependencies_reqs, you can check the dependencies which are
+declared in a cpanfile in the root of the checkout. An example usage follows,
+and can be deployed with very little customisation needed.
+
+ # file: t/test-dependencies.t
+ use strict;
+ use warnings;
+
+ use FindBin qw/ $Bin /;
+
+ use Test::More;
+ use Test::CheckDeps qw/ check_dependencies_reqs /;
+ use Module::CPANfile;
+
+ # Which phases to test
+ my $phases = [
+  'runtime',
+  'build',
+ ];
+
+ my $file = Module::CPANfile->load("$Bin/../cpanfile");
+
+ check_dependencies_reqs(
+  $file->prereqs->merged_requirements( $phases )
+ );
+
+ done_testing;
+
+See L<Module::CPANfile> for cpanfile documentation, and L<CPAN::Meta::Prereqs>
+for the options for merged_requirements.
 
 =cut
 # vim: set ts=2 sw=2 noet nolist :
